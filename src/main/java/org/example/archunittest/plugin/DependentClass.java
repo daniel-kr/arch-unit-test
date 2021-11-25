@@ -14,6 +14,10 @@ public class DependentClass {
         return genericType instanceof ApiClass;
     }
 
+    @SomeAnnotation(ApiClass.class)
     public void methodThrowingException() throws ApiClass {
+    }
+
+    public void methodWithArrayParameter(ApiClass[] array) {
     }
 }
