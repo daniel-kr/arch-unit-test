@@ -1,5 +1,6 @@
 package org.example.archunittest.plugin;
 
+import com.tngtech.archunit.base.DescribedPredicate;
 import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
@@ -29,6 +30,20 @@ public class ArchUnitTest {
             .that(
                     resideOutsideOfPackages(PLATFORM_PACKAGE))
             .should().onlyDependOnClassesThat(
-                    annotatedWith(PublicApi.class).<JavaClass>forSubtype()
+                    haveTypeOrArrayComponentType(annotatedWith(PublicApi.class).<JavaClass>forSubType())
                             .or(resideOutsideOfPackages(PLATFORM_PACKAGE)));
+
+    public static DescribedPredicate<JavaClass> haveTypeOrArrayComponentType(final DescribedPredicate<? super JavaClass> componentTypePredicate) {
+        return new DescribedPredicate<>("have type or array component type " + componentTypePredicate.getDescription()) {
+            @Override
+            public boolean apply(JavaClass javaClass) {
+                boolean applies = componentTypePredicate.apply(javaClass);
+                if (applies || !javaClass.isArray()) {
+                    return applies;
+                }
+                JavaClass componentType = javaClass.getComponentType();
+                return this.apply(componentType);
+            }
+        };
+    }
 }
