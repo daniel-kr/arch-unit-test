@@ -13,4 +13,7 @@ public class DependentClass {
     public boolean checkInstanceOf() {
         return genericType instanceof ApiClass;
     }
+
+    public void methodThrowingException() throws ApiClass {
+    }
 }
