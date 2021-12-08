@@ -11,5 +11,6 @@ repositories {
 
 dependencies {
     implementation project(":platform")
+    testImplementation (testFixtures(project(':platform')))
     testImplementation 'com.tngtech.archunit:archunit-junit4:0.22.0'
 }

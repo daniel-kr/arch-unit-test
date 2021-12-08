@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'java-test-fixtures'
 }
 
 group 'org.example'
@@ -10,5 +11,11 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.tngtech.archunit:archunit-junit4:0.22.0'
+
+    // Ensure that dependencies of scope testFixtureImplementation inherit and are inherited within this module:
+    // implementation -> testFixtureImplementation -> testImplementation
+    testFixturesImplementation configurations.implementation
+    testImplementation configurations.testFixturesImplementation
+
+    testFixturesImplementation 'com.tngtech.archunit:archunit-junit4:0.22.0'
 }
