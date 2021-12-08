@@ -1,2 +1,4 @@
 rootProject.name = 'arch-unit-test'
+include 'platform'
+include 'plugin'
 
