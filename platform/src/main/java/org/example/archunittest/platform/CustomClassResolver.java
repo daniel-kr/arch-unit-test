@@ -1,4 +1,4 @@
-package org.example.archunittest.plugin;
+package org.example.archunittest.platform;
 
 import com.tngtech.archunit.ArchConfiguration;
 import com.tngtech.archunit.base.Optional;

@@ -8,3 +8,7 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+dependencies {
+    implementation 'com.tngtech.archunit:archunit-junit4:0.22.0'
+}
