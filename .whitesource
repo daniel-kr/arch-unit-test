@@ -4,7 +4,7 @@
     "configExternalURL": "",
     "projectToken": "",
     "enableLicenseViolations": "true",
-    "baseBranches": []
+    "baseBranches": [master, test-branch]
   },
   "checkRunSettings": {
     "vulnerableCheckRunConclusionLevel": "failure",
